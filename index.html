@@ -12,6 +12,25 @@
     <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
+    <div class="wrapper">
+      <div class="header">
+        <h1>Enter a GitHub handle to see it's public repos</h1>
+        <form>
+          <label for="githubHandle">GitHub Handle:</label>
+          <input
+            type="text"
+            name="githubHandle"
+            placeholder="Enter a valid GitHub handle"
+            required
+          />
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
+      <section class="results hidden">
+        <h2>Here are the public repos</h2>
+      </section>
+    </div>
+
     <script
       src="https://code.jquery.com/jquery-3.3.1.js"
       integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
