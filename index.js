@@ -3,24 +3,29 @@
 // Requirements:
 
 // 1) The user must be able to search for a GitHub user handle.
-function getGithubHandle(handle) {
-  fetch(`https://api.github.com/users/${handle}/repos`)
+function getGithubHandle(username) {
+  fetch(`https://api.github.com/users/${username}/repos`)
     .then((reponse) => reponse.json())
-    .then((responseJson) => console.log(responseJson))
-    .catch((error) => alert("There was an error. Please try again later."));
+    .then((responseJson) => displayRepos(responseJson))
+    .catch((error) =>
+      alert("There was an error. Please try again later." + error)
+    );
 }
 
 // 2) The search must trigger a call to GitHub's API.
-
-// function displayRepos(responseJson, repo) {
-//   console.log(responseJson);
-//   $(".results").html(`<h2>Here are the user's repos!</h2>`);
-
-//   $(".results").append(`<h3>${repo}</h3>`);
-
-//   //display the results section
-//   $(".results").removeClass("hidden");
-// }
+function displayRepos(responseJson) {
+  // if there are previous results, remove them
+  $(".results").empty();
+  // iterate through the articles array, stopping at the max number of results
+  for (let i = 0; i < responseJson.length; i++) {
+    $(".results").append(
+      `<p><a href="${responseJson[i].svn_url}" target="_blank">${responseJson[i].name}</a></p>
+        </li>`
+    );
+  }
+  //display the results section
+  $(".results").removeClass("hidden");
+}
 
 function watchForm() {
   $("form").submit((event) => {
